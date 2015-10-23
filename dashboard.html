@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="bolsa, cotação, preço médio, custo médio, carteira, carteira de investimento, gerenciador, gestor, ação, acao, ações, investimento, investimentos, bovespa, fii, fundo imobiliário.">
+<meta name="description" content="Meus ativos é uma solução para quem quer ter mais controle sobre seus investimentos. Com este aplicativo você consegue a qualquer momento consultar o resultado dos seus investimentos em ações ou fundos imobiliários. Disponível para Android.">
+<meta name="author" content="Meus Ativos">
+
+<title>Dashboard | Meus Ativos</title>
+
+    <script src="https://www.google.com/jsapi" data-turbolinks-track="false"></script>
+    <script type="text/javascript">
+
+        google.load('visualization', '1', {'packages':['bar']});
+        google.setOnLoadCallback(drawDualYChart);
+
+        function drawDualYChart() {
+            var options = {
+                legend: { position: 'left' },
+                colors: ['#009A80', '#00CDAB'],
+                series: {
+                    0: { axis: 'Valor Atual' },
+                    1: { axis: 'Valor Atual' }
+                }
+            };
+
+            var dados_all = [];
+            dados_all.push(['', 'Valor Investido', 'Valor Atual']);
+
+            dados_all.push(['Fundos Imobiliários', 5939.81, 8770.3]);
+            dados_all.push(['Ações', 10132.44, 9486.64]);
+
+
+            var dados_stocks = [];
+            dados_stocks.push(['', 'Valor Investido', 'Valor Atual']);
+
+            dados_stocks.push(['ITUB4', 2616.68, 2264.2400000000002]);
+            dados_stocks.push(['CIEL3', 2486.76, 2672.3999999999996]);
+            dados_stocks.push(['ESTC3', 2359.0, 1694.0000000000002]);
+            dados_stocks.push(['BBSE3', 2620.0, 2856.0]);
+            dados_stocks.push(['AAAA3', 50.0, 0.0]);
+
+
+            var data_all = new google.visualization.arrayToDataTable(dados_all);
+            var chart_all = new google.charts.Bar(document.getElementById('chart-area-1'));
+            chart_all.draw(data_all, options);
+
+            var data_stocks = new google.visualization.arrayToDataTable(dados_stocks);
+            var chart_stocks = new google.charts.Bar(document.getElementById('chart-area-2'));
+            chart_stocks.draw(data_stocks, options);
+
+            //var data_all = new google.visualization.arrayToDataTable(dados_all);
+            //var chart_all = new google.charts.Bar($('#chart-area-all-assets-tag').get(0));
+
+            //var data_stocks = new google.visualization.arrayToDataTable(dados_stocks);
+            //var chart_stocks = new google.charts.Bar($('#chart-area-stocks-tag').get(0));
+
+            
+            
+
+        };
+
+    </script>
+
+  </head>
+<body>
+  <div id="chart-area-1"></div>
+  <div id="chart-area-2"></div>
+
+</body>
+</html>
