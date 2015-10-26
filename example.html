@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Google Chart Tools Tutorial</title>
+ 
+        <style type="text/css">
+ 
+            #details0, #details1, #details2, #details3 {
+                visibility:hidden;
+                background: #FFFF7F;
+                border: solid 1px;
+                width: 350px;
+                padding: 5px;
+                font-size:smaller;
+                position:absolute;
+                top: 250px;
+ 
+            }
+ 
+        </style>
+ 
+        <!-- load Google AJAX API -->
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            //load thee Google Visualization API and the chart
+            google.load('visualization', '1', {'packages': ['columnchart']});
+ 
+            //set callback
+            google.setOnLoadCallback (createChart);
+ 
+            //callback function
+            function createChart() {
+ 
+                //create data table object
+                var dataTable = new google.visualization.DataTable();
+ 
+                //define columns
+                dataTable.addColumn('string','Quarters 2009');
+                dataTable.addColumn('number', 'Earnings');
+ 
+                //define rows of data
+                dataTable.addRows([['Q1',308], ['Q2',257],['Q3',375],['Q4', 123]]);
+ 
+                //instantiate our chart objects
+                var chart = new google.visualization.ColumnChart (document.getElementById('chart'));
+ 
+                //define options for visualization
+                var options = {width: 400, height: 240, is3D: true, title: 'Company Earnings'};
+ 
+                //draw our chart
+                chart.draw(dataTable, options);
+ 
+                //register callbacks
+                google.visualization.events.addListener(chart, 'onmouseover', showDetails);
+                google.visualization.events.addListener(chart, 'onmouseout', hideDetails);
+            }
+ 
+            function showDetails(e) {
+                switch (e['row']) {
+                    case 0: document.getElementById('details0').style.visibility='visible';
+                        break;
+                    case 1: document.getElementById('details1').style.visibility='visible';
+                        break;
+                    case 2: document.getElementById('details2').style.visibility='visible';
+                        break;
+                    case 3: document.getElementById('details3').style.visibility='visible';
+                        break;
+                }
+            }
+ 
+            function hideDetails(e) {
+                switch (e['row']) {
+                    case 0: document.getElementById('details0').style.visibility='hidden';
+                        break;
+                    case 1: document.getElementById('details1').style.visibility='hidden';
+                        break;
+                    case 2: document.getElementById('details2').style.visibility='hidden';
+                        break;
+                    case 3: document.getElementById('details3').style.visibility='hidden';
+                        break;
+                }
+            }
+ 
+        </script>
+    </head>
+ 
+    <body>
+ 
+        <!--Div for our chart -->
+        <div id="chart"></div>
+ 
+        <!--Divs for our messages -->
+        <div id="details0">These are the details for Q1...</div>
+        <div id="details1">Here you have the numbers for Q2...</div>
+        <div id="details2">Explanations for the third quarter...</div>
+        <div id="details3">Q4 was as expected...</div>
+ 
+    </body>
+ 
+</html>

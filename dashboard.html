@@ -9,7 +9,7 @@
     <script type="text/javascript">
 
         
-        google.load('visualization', '1.0', {'packages':['bar']});
+        google.load('visualization', '1.0', {'packages':['columnchart']});
         google.setOnLoadCallback(drawDualYChart);
 
         function drawDualYChart() {
@@ -19,7 +19,8 @@
                 series: {
                     0: { axis: 'Valor Atual' },
                     1: { axis: 'Valor Atual' }
-                }
+                },
+                width: 400, height: 240, is3D: true,
             };
 
             var dados_all = [];
@@ -40,11 +41,11 @@
 
 
             var data_all = new google.visualization.arrayToDataTable(dados_all);
-            var chart_all = new google.charts.Bar(document.getElementById('chart-area-1'));
+            var chart_all = new google.visualization.ColumnChart (document.getElementById('chart-area-1'));
             chart_all.draw(data_all, options);
 
             var data_stocks = new google.visualization.arrayToDataTable(dados_stocks);
-            var chart_stocks = new google.charts.Bar(document.getElementById('chart-area-2'));
+            var chart_stocks = new google.visualization.ColumnChart(document.getElementById('chart-area-2'));
             chart_stocks.draw(data_stocks, options);
 
             //var data_all = new google.visualization.arrayToDataTable(dados_all);
